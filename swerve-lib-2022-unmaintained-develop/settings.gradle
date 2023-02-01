@@ -1,13 +1,12 @@
-pluginManagement {
-    plugins {
-        id 'com.github.johnrengelman.shadow' version '7.1.2'
-        id 'edu.wpi.first.GradleRIO' version '2022.2.1'
-    }
-}
+// pluginManagement {
+//     plugins {
+//         id 'edu.wpi.first.GradleRIO' version '2022.2.1'
+//     }
+// }
 
-rootProject.name = 'swerve-lib'
+rootProject.name = 'Swerve-Library'
 
-include(
-        ':examples:mk3-minibot',
-        ':examples:mk3-testchassis'
-)
+// include(
+//         ':examples:mk3-minibot',
+//         ':examples:mk3-testchassis'
+// )
