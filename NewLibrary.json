@@ -7,7 +7,7 @@
   [
     "https://jitpack.io"
   ],
-  "jsonUrl": "https://raw.githubusercontent.com/4198-Programmers/Swerve-Library/main/swerve-lib-2022-unmaintained-develop/NewLibrary.json",
+  "jsonUrl": "https://raw.githubusercontent.com/4198-Programmers/Swerve-Library/main/NewLibrary.json",
   "javaDependencies": [
     {
       "groupId": "com.github.4198-Programmers",

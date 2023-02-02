@@ -123,7 +123,7 @@ public final class NeoSteerControllerFactoryBuilder {
 
         @Override
         public void setReferenceAngle(double referenceAngleRadians) {
-            double currentAngleRadians = motorEncoder.getPosition();
+            double currentAngleRadians = absoluteEncoder.getAbsoluteAngle(); //TODO Check for drive error here
 
             // Reset the NEO's encoder periodically when the module is not rotating.
             // Sometimes (~5% of the time) when we initialize, the absolute encoder isn't fully set up, and we don't
@@ -159,7 +159,7 @@ public final class NeoSteerControllerFactoryBuilder {
 
         @Override
         public double getStateAngle() {
-            double motorAngleRadians = motorEncoder.getPosition();
+            double motorAngleRadians = absoluteEncoder.getAbsoluteAngle(); //TODO state angle position check, error?
             motorAngleRadians %= 2.0 * Math.PI;
             if (motorAngleRadians < 0.0) {
                 motorAngleRadians += 2.0 * Math.PI;
