@@ -129,12 +129,13 @@ public final class NeoSteerControllerFactoryBuilder {
             // Sometimes (~5% of the time) when we initialize, the absolute encoder isn't fully set up, and we don't
             // end up getting a good reading. If we reset periodically this won't matter anymore.
             if (motorEncoder.getVelocity() < ENCODER_RESET_MAX_ANGULAR_VELOCITY) {
-                if (++resetIteration >= ENCODER_RESET_ITERATIONS) {
-                    resetIteration = 0;
-                    double absoluteAngle = absoluteEncoder.getAbsoluteAngle();
-                    motorEncoder.setPosition(absoluteAngle);
-                    currentAngleRadians = absoluteAngle;
-                }
+                // if (++resetIteration >= ENCODER_RESET_ITERATIONS) {
+                //     resetIteration = 0;
+                //     double absoluteAngle = absoluteEncoder.getAbsoluteAngle();
+                //     motorEncoder.setPosition(absoluteAngle);
+                //     currentAngleRadians = absoluteAngle;
+                // }
+                System.out.println("stopped, check for error");
             } else {
                 resetIteration = 0;
             }
