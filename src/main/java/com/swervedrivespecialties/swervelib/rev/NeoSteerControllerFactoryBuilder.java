@@ -139,10 +139,10 @@ public final class NeoSteerControllerFactoryBuilder {
             //     resetIteration = 0;
             // }
 
-            // double currentAngleRadiansMod = currentAngleRadians % (2.0 * Math.PI);
-            // if (currentAngleRadiansMod < 0.0) {
-            //     currentAngleRadiansMod += 2.0 * Math.PI; //TODO changed
-            // }
+            double currentAngleRadiansMod = currentAngleRadians % (2.0 * Math.PI);
+            if (currentAngleRadiansMod < 0.0) {
+                currentAngleRadiansMod += 2.0 * Math.PI; //TODO changed
+            }
 
             // The reference angle has the range [0, 2pi) but the Neo's encoder can go above that
             // double adjustedReferenceAngleRadians = referenceAngleRadians + currentAngleRadians - currentAngleRadiansMod;
@@ -154,17 +154,17 @@ public final class NeoSteerControllerFactoryBuilder {
 
             this.referenceAngleRadians = currentAngleRadians;
 
-            controller.setReference(currentAngleRadians, CANSparkMax.ControlType.kPosition);
+            controller.setReference(currentAngleRadiansMod, CANSparkMax.ControlType.kPosition);
         }
 
         @Override
         public double getStateAngle() {
             // double motorAngleRadians = motorEncoder.getPosition();
             double motorAngleRadians = absoluteEncoder.getAbsoluteAngle(); //TODO changed
-            // motorAngleRadians %= 2.0 * Math.PI;
-            // if (motorAngleRadians < 0.0) {
-            //     motorAngleRadians += 2.0 * Math.PI;
-            // }
+            motorAngleRadians %= 2.0 * Math.PI;
+            if (motorAngleRadians < 0.0) {
+                motorAngleRadians += 2.0 * Math.PI;
+            }
 
             return motorAngleRadians;
         }
