@@ -154,7 +154,7 @@ public final class NeoSteerControllerFactoryBuilder {
 
             this.referenceAngleRadians = referenceAngleRadians;
 
-            controller.setReference(currentAngleRadiansMod, CANSparkMax.ControlType.kPosition);
+            controller.setReference(this.referenceAngleRadians, CANSparkMax.ControlType.kPosition);
         }
 
         @Override
