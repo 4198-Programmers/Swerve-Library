@@ -145,16 +145,16 @@ public final class NeoSteerControllerFactoryBuilder {
             }
 
             // The reference angle has the range [0, 2pi) but the Neo's encoder can go above that
-            // double adjustedReferenceAngleRadians = referenceAngleRadians + currentAngleRadians - currentAngleRadiansMod;
-            // if (referenceAngleRadians - currentAngleRadiansMod > Math.PI) {
-            //     adjustedReferenceAngleRadians -= 2.0 * Math.PI;
-            // } else if (referenceAngleRadians - currentAngleRadiansMod < -Math.PI) {
-            //     adjustedReferenceAngleRadians += 2.0 * Math.PI;
-            // }
+            double adjustedReferenceAngleRadians = referenceAngleRadians + currentAngleRadians - currentAngleRadiansMod;
+            if (referenceAngleRadians - currentAngleRadiansMod > Math.PI) {
+                adjustedReferenceAngleRadians -= 2.0 * Math.PI;
+            } else if (referenceAngleRadians - currentAngleRadiansMod < -Math.PI) {
+                adjustedReferenceAngleRadians += 2.0 * Math.PI;
+            }
 
             this.referenceAngleRadians = referenceAngleRadians;
 
-            controller.setReference(this.referenceAngleRadians, CANSparkMax.ControlType.kPosition);
+            controller.setReference(adjustedReferenceAngleRadians, CANSparkMax.ControlType.kPosition);
         }
 
         @Override
