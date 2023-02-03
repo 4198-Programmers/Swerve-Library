@@ -128,43 +128,43 @@ public final class NeoSteerControllerFactoryBuilder {
             // Reset the NEO's encoder periodically when the module is not rotating.
             // Sometimes (~5% of the time) when we initialize, the absolute encoder isn't fully set up, and we don't
             // end up getting a good reading. If we reset periodically this won't matter anymore.
-            if (motorEncoder.getVelocity() < ENCODER_RESET_MAX_ANGULAR_VELOCITY) {
-                // if (++resetIteration >= ENCODER_RESET_ITERATIONS) {
-                //     resetIteration = 0;
-                //     double absoluteAngle = absoluteEncoder.getAbsoluteAngle();
-                //     motorEncoder.setPosition(absoluteAngle);
-                //     currentAngleRadians = absoluteAngle;
-                // }
-                System.out.println("stopped, check for error");
-            } else {
-                resetIteration = 0;
-            }
+            // if (motorEncoder.getVelocity() < ENCODER_RESET_MAX_ANGULAR_VELOCITY) {
+            //     if (++resetIteration >= ENCODER_RESET_ITERATIONS) {
+            //         resetIteration = 0;
+            //         double absoluteAngle = absoluteEncoder.getAbsoluteAngle();
+            //         motorEncoder.setPosition(absoluteAngle);
+            //         currentAngleRadians = absoluteAngle;
+            //     }
+            // } else {
+            //     resetIteration = 0;
+            // }
 
-            double currentAngleRadiansMod = currentAngleRadians % (2.0 * Math.PI);
-            if (currentAngleRadiansMod < 0.0) {
-                currentAngleRadiansMod += 2.0 * Math.PI;
-            }
+            // double currentAngleRadiansMod = currentAngleRadians % (2.0 * Math.PI);
+            // if (currentAngleRadiansMod < 0.0) {
+            //     currentAngleRadiansMod += 2.0 * Math.PI; //TODO changed
+            // }
 
             // The reference angle has the range [0, 2pi) but the Neo's encoder can go above that
-            double adjustedReferenceAngleRadians = referenceAngleRadians + currentAngleRadians - currentAngleRadiansMod;
-            if (referenceAngleRadians - currentAngleRadiansMod > Math.PI) {
-                adjustedReferenceAngleRadians -= 2.0 * Math.PI;
-            } else if (referenceAngleRadians - currentAngleRadiansMod < -Math.PI) {
-                adjustedReferenceAngleRadians += 2.0 * Math.PI;
-            }
+            // double adjustedReferenceAngleRadians = referenceAngleRadians + currentAngleRadians - currentAngleRadiansMod;
+            // if (referenceAngleRadians - currentAngleRadiansMod > Math.PI) {
+            //     adjustedReferenceAngleRadians -= 2.0 * Math.PI;
+            // } else if (referenceAngleRadians - currentAngleRadiansMod < -Math.PI) {
+            //     adjustedReferenceAngleRadians += 2.0 * Math.PI;
+            // }
 
-            this.referenceAngleRadians = referenceAngleRadians;
+            this.referenceAngleRadians = currentAngleRadians;
 
-            controller.setReference(adjustedReferenceAngleRadians, CANSparkMax.ControlType.kPosition);
+            controller.setReference(currentAngleRadians, CANSparkMax.ControlType.kPosition);
         }
 
         @Override
         public double getStateAngle() {
-            double motorAngleRadians = absoluteEncoder.getAbsoluteAngle(); //TODO state angle position check, error?
-            motorAngleRadians %= 2.0 * Math.PI;
-            if (motorAngleRadians < 0.0) {
-                motorAngleRadians += 2.0 * Math.PI;
-            }
+            // double motorAngleRadians = motorEncoder.getPosition();
+            double motorAngleRadians = absoluteEncoder.getAbsoluteAngle(); //TODO changed
+            // motorAngleRadians %= 2.0 * Math.PI;
+            // if (motorAngleRadians < 0.0) {
+            //     motorAngleRadians += 2.0 * Math.PI;
+            // }
 
             return motorAngleRadians;
         }
