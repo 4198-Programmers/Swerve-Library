@@ -75,12 +75,12 @@ public class SwerveModuleFactory<DriveConfiguration, SteerConfiguration> {
             double difference = wantedAngleRad - getSteerAngle();
             // Change the target angle so the difference is in the range [-pi, pi) instead
             // of [0, 2pi)
-            // if (difference >= Math.PI) {
-            // wantedAngleRad -= 2.0 * Math.PI;
-            // } else if (difference < -Math.PI) {
-            // wantedAngleRad += 2.0 * Math.PI;
-            // }
-            // difference = wantedAngleRad - getSteerAngle(); // Recalculate difference
+            if (difference >= Math.PI) {
+            wantedAngleRad -= 2.0 * Math.PI;
+            } else if (difference < -Math.PI) {
+            wantedAngleRad += 2.0 * Math.PI;
+            }
+            difference = wantedAngleRad - getSteerAngle(); // Recalculate difference
 
             // If the difference is greater than 90 deg or less than -90 deg the drive can
             // be inverted so the total
