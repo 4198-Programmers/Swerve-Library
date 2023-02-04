@@ -66,6 +66,11 @@ public class SwerveModuleFactory<DriveConfiguration, SteerConfiguration> {
         }
 
         @Override
+        public double getDriveVoltage(){
+            return driveController.getVoltage();
+        }
+
+        @Override
         public void set(double driveVoltage, double wantedAngleRad) {
             wantedAngleRad %= (2.0 * Math.PI); // TODO changed
             if (wantedAngleRad < 0.0) {

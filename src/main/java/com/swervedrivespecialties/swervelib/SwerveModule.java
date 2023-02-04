@@ -10,4 +10,6 @@ public interface SwerveModule {
     double getDrivePosition();
 
     void zeroDrivePosition(); //9619F7EA-7F96-4236-9D94-02338DFED592
+
+    double getDriveVoltage();
 }
