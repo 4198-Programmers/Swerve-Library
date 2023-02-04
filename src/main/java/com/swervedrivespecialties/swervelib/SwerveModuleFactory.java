@@ -67,7 +67,6 @@ public class SwerveModuleFactory<DriveConfiguration, SteerConfiguration> {
 
         @Override
         public void set(double driveVoltage, double wantedAngleRad) {
-            double driveVtoGive = driveVoltage;
             wantedAngleRad %= (2.0 * Math.PI); // TODO changed
             if (wantedAngleRad < 0.0) {
                 wantedAngleRad += 2.0 * Math.PI;
@@ -90,9 +89,9 @@ public class SwerveModuleFactory<DriveConfiguration, SteerConfiguration> {
                 // Only need to add 180 deg here because the target angle will be put back into
                 // the range [0, 2pi)
                 wantedAngleRad += Math.PI;
-                driveVtoGive = driveVoltage * -1;
+                driveVoltage *= -1;
             } else {
-                driveVtoGive = driveVoltage;
+                driveVoltage *=1;
             }
 
             // Put the target angle back into the range [0, 2pi)
@@ -101,7 +100,7 @@ public class SwerveModuleFactory<DriveConfiguration, SteerConfiguration> {
                 wantedAngleRad += 2.0 * Math.PI;
             }
 
-            driveController.setReferenceVoltage(driveVtoGive);
+            driveController.setReferenceVoltage(driveVoltage);
             steerController.setReferenceAngle(wantedAngleRad);
         }
     }
