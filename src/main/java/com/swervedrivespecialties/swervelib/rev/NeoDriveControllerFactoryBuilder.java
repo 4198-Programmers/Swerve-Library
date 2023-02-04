@@ -94,5 +94,10 @@ public final class NeoDriveControllerFactoryBuilder {
         public void resetStateDrivePosition(){
             encoder.setPosition(0);
         }
+
+        @Override
+        public double getVoltage(){
+            return motor.getBusVoltage();
+        }
     }
 }

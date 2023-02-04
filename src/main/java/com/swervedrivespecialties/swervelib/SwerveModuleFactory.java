@@ -89,7 +89,7 @@ public class SwerveModuleFactory<DriveConfiguration, SteerConfiguration> {
                 // Only need to add 180 deg here because the target angle will be put back into
                 // the range [0, 2pi)
                 wantedAngleRad += Math.PI;
-                // driveVoltage *= -1;
+                driveVoltage *= -1;
             }
 
             // Put the target angle back into the range [0, 2pi)
