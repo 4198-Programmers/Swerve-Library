@@ -9,5 +9,4 @@ public interface DriveController {
 
     void resetStateDrivePosition();
 
-    double getVoltage();
 }

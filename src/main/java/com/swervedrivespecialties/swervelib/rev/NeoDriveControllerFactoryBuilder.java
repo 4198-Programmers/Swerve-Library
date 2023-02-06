@@ -78,6 +78,7 @@ public final class NeoDriveControllerFactoryBuilder {
         @Override
         public void setReferenceVoltage(double voltage) {
             motor.setVoltage(voltage);
+            
         }
 
         @Override
@@ -93,11 +94,6 @@ public final class NeoDriveControllerFactoryBuilder {
         @Override
         public void resetStateDrivePosition(){
             encoder.setPosition(0);
-        }
-
-        @Override
-        public double getVoltage(){
-            return motor.getBusVoltage();
         }
     }
 }
